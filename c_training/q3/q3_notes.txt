@@ -1,0 +1,46 @@
+1.
+
+Checked limits.h files on my computer and see what had been defined
+
+[root@silpixa00399304 ~]# find / -iname limits.h
+/usr/lib/gcc/x86_64-redhat-linux/10/include/limits.h
+/usr/lib64/clang/10.0.1/include/limits.h
+/usr/include/c++/10/tr1/limits.h
+/usr/include/linux/limits.h
+/usr/include/limits.h
+/usr/src/kernels/5.11.22-100.fc32.x86_64/include/linux/limits.h
+/usr/src/kernels/5.11.22-100.fc32.x86_64/include/uapi/linux/limits.h
+/usr/src/kernels/5.11.22-100.fc32.x86_64/include/vdso/limits.h
+
+Manually checked each file to see what it got, for what had been defined
+
+
+2. 
+
+%d to print LONG_MAX failed in printf, overflow.... use %l
+
+3. 
+
+Interesting info in 
+/usr/include/linux/limits.h
+
+/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+#ifndef _LINUX_LIMITS_H
+#define _LINUX_LIMITS_H
+
+#define NR_OPEN         1024
+
+#define NGROUPS_MAX    65536    /* supplemental group IDs are available */
+#define ARG_MAX       131072    /* # bytes of args + environ for exec() */
+#define LINK_MAX         127    /* # links a file may have */
+#define MAX_CANON        255    /* size of the canonical input queue */
+#define MAX_INPUT        255    /* size of the type-ahead buffer */
+#define NAME_MAX         255    /* # chars in a file name */
+#define PATH_MAX        4096    /* # chars in a path name including nul */
+#define PIPE_BUF        4096    /* # bytes in atomic write to a pipe */
+#define XATTR_NAME_MAX   255    /* # chars in an extended attribute name 
+
+Similarly in /usr/src/kernels/5.11.22-100.fc32.x86_64/include/linux/limits.h
+/usr/src/kernels/5.11.22-100.fc32.x86_64/include/uapi/linux/limits.h
+/usr/src/kernels/5.11.22-100.fc32.x86_64/include/vdso/limits.h
+
